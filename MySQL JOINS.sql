@@ -89,11 +89,8 @@ from employees
 right join departments
 on departments.department_id = employees.department_id;
 
-/*QUESTION-9 Write a query to find employees in the same department as other employees.*/
-select employees.emp_name from employees where department_id = department_id;
 
-
-/*QUESTION-10 Write a query to find projects managed by employees in the 'IT' department.*/
+/*QUESTION-9 Write a query to find projects managed by employees in the 'IT' department.*/
 select projects.project_name from projects
 inner join employees
 on employees.emp_id = projects.emp_id
@@ -102,26 +99,26 @@ on departments.department_id = employees.department_id
 where departments.department_name = "IT";
 
 
-/*QUESTION-11 Write a query to show employees and their project information (even if not assigned to a project).*/
+/*QUESTION-10 Write a query to show employees and their project information (even if not assigned to a project).*/
 select employees.emp_name, projects.project_name
 from employees
 left join projects
 on projects.emp_id = employees.emp_id;
 
-/*QUESTION-12 Find employees who work in departments with names starting with 'A'.*/
+/*QUESTION-11 Find employees who work in departments with names starting with 'A'.*/
 select employees.emp_name from employees
 left join departments
 on departments.department_id = employees.department_id
 where departments.department_name like "a%";
 
-/*QUESTION-13 Find the total number of employees in each department using GROUP BY and JOIN.*/
+/*QUESTION-12 Find the total number of employees in each department using GROUP BY and JOIN.*/
 select departments.department_name, count(employees.emp_id) as "total employees" from departments
 left join employees
 on employees.department_id = departments.department_id
 group by departments.department_name
 having count(employees.emp_id);
 
-/*QUESTION-14 Get the list of departments with more than one employee.*/
+/*QUESTION-13 Get the list of departments with more than one employee.*/
 select departments.department_name, count(departments.department_id) as "total employees" from departments
 right join employees
 on employees.department_id = departments.department_id
